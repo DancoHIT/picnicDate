@@ -1,0 +1,272 @@
+﻿body{
+    direction: rtl;      /* טקסט מימין לשמאל */
+    background: #E8FBFE; /* צבע רקע כללי  */
+    color: #222222;      /* צבע טקסט ברירת מחדל */
+    line-height: 2.5;    /* מרווח שורות נוח  */
+    font-family: "Assistant", system-ui, -apple-system, "Segoe UI", Arial, sans-serif; /* פונטים  */
+}
+
+
+h1{
+    font-size: 40px;     /* גודל כותרת ראשית */
+    font-weight: 700;    /* משקל מודגש  */
+    margin: 18px 0 1px;  /* מרווחים מסביב (עליון/תחתון/צדדים)  */
+    text-align: center;  /* מירכוז הכותרת  */
+}
+
+
+h2{
+    font-size: 25px;     /* גודל כותרת משנית/פתיח  */
+    font-weight: 400;    /* משקל רגיל  */
+    text-align: center;  /* מירכוז הטקסט  */
+}
+
+
+#container{ 
+    max-width: 1400px; /* רוחב מרבי כדי לא להימתח מדי במסכים רחבים  */
+    width: 100%;       /* תופס את כל הרוחב הפנוי עד לתקרה  */
+    margin: 0 auto;    /* מרכוז אופקי בשוליים הצדדיים */
+    padding: 0 24px;   /* ריווח פנימי מהקצוות הימני/שמאלי  */
+    font-size: 20px;   /* גודל בסיסי לטקסט בתוך המיכל  */
+}
+
+
+/*פריסת גריד*/
+
+.layout{ /* מעטפת הפריסה הראשית  */
+    display: grid;                 /* מפעיל CSS Grid   */
+    grid-template-columns: 560px 1fr; /* הגדרת עמודות: שמאלית קבועה וימנית גמישה  */
+    gap: 24px 40px;                /* רווחים: 24px לשורות, 40px לעמודות  */
+    align-items: start;            /* מיישר את התאים לראש השורה  */
+}
+
+
+.layout .form   { grid-column: 1; grid-row: 1 / span 2; } /* הטופס בעמודה 1 ובגובה של 2 שורות  */
+.layout .squares{ grid-column: 2; grid-row: 1; margin-top: 150px;}          /* אזור האייקונים בעמודה 2, שורה 1  */
+.simulation     { grid-column: 2; grid-row: 2; }          /* הסימולציה בעמודה 2, שורה 2  */
+
+
+/*מלבנים כחולים*/
+
+.simulation{             
+    background: rgba(51,105,149,0.51); /* רקע כחול חצי שקוף  */
+    border: 2px solid #12384F;         /* מסגרת כחולה כהה  */
+    border-radius: 10px;               /* פינות מעוגלות */
+    padding: 7px;                      /* ריווח פנימי  */
+    margin-bottom: 10px;               /* רווח כלפי מטה  */
+}
+
+.square{                     
+    height: 120px;            /* גובה קבוע לאזור האייקונים */
+    margin-bottom: 35px;      /* רווח תחתון בין קופסאות  */
+    background: rgba(51,105,149,0.51); /* רקע כחול חצי שקוף  */
+    border: 2px solid #12384F;         /* מסגרת  */
+    border-radius: 10px;               /* פינות מעוגלות  */
+    padding: 7px;                      /* ריווח פנימי  */
+}
+
+
+/*האייקונים שבמלבנים*/
+
+.square .icons{             
+    display: flex;           /* פריסת Flex בשורה  */
+    justify-content: space-around; /* חלוקה שווה לרוחב  */
+    align-items: center;     /* יישור אנכי למרכז  */
+    gap: 50px;               /* רווח קבוע בין האייקונים  */
+    padding: 20px 6px;       /* ריווח פנימי  */
+}
+
+#icon-cheese{ 
+    width: 200px;  /* רוחב קבוע  */
+    height: 60px;  /* גובה קבוע  */
+}
+
+#square-light .icons{ 
+    justify-content: center; /* ממקם במרכז  */
+    gap: 100px;              /* רווח גדול יותר בין שני האייקונים  */
+}
+
+.thumb{              
+    height: 78px;    /* גובה אחיד  */
+    width: auto;     /* שמירת יחס פרופורציונאלי  */
+}
+
+.dim{                           /* מצב אייקון כבוי/עמום  */
+    opacity: .5;                /* שקיפות 50%  */
+    
+}
+
+
+/*סימולציה*/
+
+.simulation > div{     
+    position: relative; /* משמש כעוגן לאלמנטים  */
+    width: 100%;        /* תופס את כל הרוחב  */
+    aspect-ratio: 16/11;/* יחס גובה/רוחב קבוע לאזור  */
+}
+
+.simulation .title-line{ 
+    position: absolute; /* ממוקם באופן יחסי למלבן  */
+    top: 10px;          /*  מהחלק העליון */
+    right: 30px;        /*  מהצד הימני  */
+    color: #000000;     /* צבע טקסט   */
+    font-weight: 600;   /* טקסט מודגש חלקית  */
+}
+
+#table{                 
+    position: absolute;  /* מיקום מוחלט על אזור הסימולציה  */
+    bottom: 0;           /* מוצמד לתחתית  */
+    left: 42%;           /* מוזז שמאלה לנקודת עוגן  */
+    transform: translateX(-50%); /* תיקון מרכוז אופקי  */
+    width: 80%;          /* רוחב יחסי לשטח  */
+    height: auto;        /* שמירת יחס המקור  */
+}
+
+[id^="onTable-"]{        /* סלקטור תכונה: כל תמונה שמוצבת על השולחן  */
+    position: absolute;  /* מיקום חופשי על גבי האזור  */
+    width: auto;         /* רוחב אוטומטי  */
+    height: 20%;         /* גובה יחסי לשטח הסימולציה  */
+}
+
+        /* מיקומים ספציפיים לאובייקטים הממוקמים על השולחן  */
+        #onTable-juice { top: 27%; right: 70%; height: 19%; }
+        #onTable-wine  { top: 25%; right: 56%; height: 19%; }
+        #onTable-water { top: 34%; right: 44%; height: 15%; }
+        #onTable-cheese     { top: 48%; right: 30%; height: 10%; }
+        #onTable-cake       { top: 43%; right: 55%; height: 12%; }
+        #onTable-strawberry { top: 45%; right: 72%; height: 15%; }
+        #onTable-lamp { top: 25%; right: 35%; height: 20%; }
+        #onTable-fire { bottom: 0%; right: 1%;  height: 25%; }
+
+
+/*טופס*/
+
+.guiding label, .question legend{ font-weight: 700; } 
+.question{                 
+    min-height: 100px;     /* גובה מינימלי לשורה נוחה  */
+    display: flex;         /* פריסה בעמודה אנכית  */
+    flex-direction: column;/* מסדר את רכיבי השאלה אחד מתחת לשני  */
+    justify-content: center; /* ממרכז אנכית בתוך הגובה המינימלי  */
+    margin-bottom: 45px;   /* רווח בין שאלות  */
+}
+
+.question fieldset{
+    border: none;           /* ללא מסגרת  */
+    padding: 0;            /* ללא ריווח פנימי  */
+    display: flex;         /* מציג אפשרויות בשורה  */
+    align-items: center;   /* יישור אנכי למרכז  */
+    gap: 25px;             /* רווח בין אפשרויות  */
+    
+}
+input[type="text"], textarea{ 
+    width: 80%;            /* רוחב שדה יחסית לקונטיינר  */
+    background: #FFFFFF;   /* רקע לבן  */
+    border: 1px solid #CBD5E1; /* מסגרת עדינה  */
+    border-radius: 8px;    /* פינות מעוגלות  */
+    padding: 8px 10px;     /* ריווח פנימי נוח  */
+    font: inherit;        /* ירושת משפחת גופן מהגוף */
+}
+input[type="text"]{  
+    line-height: 1.5; /* גובה שורה פנימי  */
+    height: 45px;     /* גובה שדה  */
+}
+textarea{           
+    line-height: 1.4; /* גובה שורה פנימי  */
+    min-height: 96px; /* גובה מינימלי לתיבה  */
+}
+
+
+/* כפתור שליחה*/
+
+#submitBtn{              
+    background: #4E95D9;  /* צבע רקע כחול */
+    color: #FFFFFF;       /* צבע טקסט לבן  */
+    font-weight: 600;     /* טקסט מודגש בינוני  */
+    border: none;         /* ללא מסגרת  */
+    border-radius: 8px;   /* פינות מעוגלות  */
+    padding: 10px 16px;   /* ריווח פנימי  */
+    cursor: pointer;      /* סמן יד בעת ריחוף  */
+}
+
+#submitBtn:disabled{    /* מצב הכפתור כשהוא מושבת  */
+    opacity: .5;        /* שקיפות 50%  */
+    cursor: not-allowed;/* סמן "לא מותר"  */
+}
+
+
+/*סיכום הזמנה*/
+
+.modal{                    
+    position: fixed;       /* קיבוע למסך כולו  */
+    inset: 0;              /* מתפרס על כל המסך  */
+    display: none;         /* מוסתר כברירת מחדל  */
+    align-items: center;   /* ממרכז אנכית את התוכן הפנימי  */
+    justify-content: center; /* ממרכז אופקית את התוכן הפנימי  */
+    background: rgba(0,0,0,.45); /* רקע כהה חצי שקוף  */
+    z-index: 999;          /* מעל כל התוכן   */
+    padding: 24px;         /* ריווח פנימי לשוליים במסכים קטנים */
+}
+
+.modal.is-open{ display: flex; } /* מצב פתוח—הופך את המודאל לנראה וגמיש  */
+
+#summary.box{            
+    max-width: 640px;     /* רוחב מקסימלי  */
+    width: 100%;          /* עד מלוא הרוחב הזמין  */
+    background: #FFFFFF;  /* רקע לבן  */
+    border: none;         /* ללא מסגרת  */
+    border-radius: 14px;  /* פינות מעוגלות יותר */
+    padding: 22px 20px;   /* ריווח פנימי  */
+    box-shadow: 0 12px 36px rgba(0,0,0,.18); /* צל עדין למרחביות  */
+}
+
+#summaryTitle{        
+    margin: 0 0 8px;   /* רווח תחתון קטן  */
+    text-align: center;/* מירכוז הכותרת  */
+    font-size: 22px;   /* גודל הכותרת  */
+    font-weight: 900;  /* מודגש מאוד  */
+    color: #12384F;    /* צבע כחול כהה  */
+}
+
+#summary p{         
+    display: block;   /* כל שורה בשורה משלה  */
+    margin: 6px 0;    /* רווח אנכי בין שורות  */
+    line-height: 1.6; /* מרווח שורות  */
+    color: #222222;   /* צבע טקסט  */
+    font-weight: 400; /* משקל רגיל לערכי המשתמש  */
+}
+
+#summary .summary-label { font-weight: 700; } /* מדגיש רק את תוויות הקריטריונים  */
+
+.modal-actions{       /* כפתור סגירה */
+    margin-top: 16px; /* רווח מעל הכפתורים  */
+    display: flex;    /* פריסה אופקית  */
+    gap: 10px;        /* רווח בין הכפתורים  */
+    justify-content: center; /* מירכוז הכפתורים  */
+}
+
+#closePopUp{               
+    background: #4E95D9;   /* צבע רקע הכפתור  */
+    color: #FFFFFF;         /* צבע טקסט לבן  */
+    font-weight: 600;       /* משקל טקסט בינוני-מודגש  */
+    border: none;           /* ללא מסגרת  */
+    border-radius: 10px;    /* פינות מעוגלות  */
+    padding: 10px 16px;     /* ריווח פנימי  */
+    cursor: pointer;        /* סמן יד  */
+}
+
+#closePopUp:hover{ opacity: .9; } /* הובר קל—מעט פחות שקוף  */
+
+
+ /*(Error Feedback) עיצוב כללי להודעות שגיאה*/
+
+.error-feedback {   
+    color: red;     /* צבע אדום להבלטה  */
+    font-size: 14px;/* גודל טקסט קטן יחסית  */
+    line-height: 1.2; /* מרווח שורות צפוף  */
+    margin-top: 0;  /* ללא רווח עליון נוסף  */
+    font-weight: 600; /* משקל מודגש בינוני לשגיאה  */
+}
+
+.must{
+    color: red;
+}

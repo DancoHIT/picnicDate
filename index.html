@@ -1,0 +1,191 @@
+﻿<!doctype html>
+<html lang="he">
+<head>
+    <meta charset="utf-8" />
+    <title>Picnic Date</title>
+    <meta name="description" content="אתר המספק את הציוד הנדרש לדייט בפיקניק" />
+    <meta name="keywords" content="דייט, פיקניק, רומנטי" />
+    <meta name="author" content="רומי מילר, דן כהן" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- CSS -->
+    <!--<link href="styles/reset.css" rel="stylesheet" />-->
+    <link href="styles/myStyle.css" rel="stylesheet" />
+
+    <!-- Scripts -->
+<!--    פקודה של ה-defer מבטיחה שקובץ ה-JavaScript ייקרא וייטען במקביל לטעינת מסמך ה-HTML, אך הרצתו תידחה עד לאחר שכל רכיבי ה-HTML עובדו (Parsing) על ידי הדפדפן-->
+    <script defer src="jScripts/JavaScript.js" type="text/javascript">  </script> 
+    
+</head>
+<body>
+<div id="container">
+    <h1>פיקניק רומנטי</h1>
+    <h2 class="intro">
+        רוצים לארגן דייט רומנטי של פיקניק בטבע לבן/בת הזוג ואין לכם כוח לרוץ בין חנויות? <br>
+        בחרו כאן את כל המוצרים לדייט המושלם, ואנחנו נארוז ונשלח במרוכז. <br>
+        כל מה שנשאר לכם הוא לבחור את ההעדפות שלכם.
+    </h2>
+
+    <div class="layout">  <!-- סימולציה, מלבנים עם האייקונים וטופס -->
+        <div class="squares">  <!-- מלבנים עם אייקונים -->
+
+            <!-- אייקונים של שתייה -->
+            <div>
+                <div class="square" id="square-drinks">
+                    <div class="icons">
+                        <img id="icon-water" class="thumb dim" src="images/Water@2x.png" alt="water">
+                        <img id="icon-wine"  class="thumb dim" src="images/Wine@2x.png"  alt="wine">
+                        <img id="icon-juice" class="thumb dim" src="images/Juice@2x.png" alt="juice">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- אייקונים של אוכל -->
+            <div>
+                <div class="square" id="square-food">
+                    <div class="icons">
+                        <img id="icon-cheese" class="thumb dim" src="images/CheeseAndBread@2x.png" alt="braedAndCheese">
+                        <img id="icon-strawberry" class="thumb dim" src="images/Strawberry@2x.png" alt="fruits">
+                        <img id="icon-cake" class="thumb dim" src="images/Cake@2x.png" alt="cake">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- אייקונים של תאורה -->
+            <div class="square" id="square-light">
+                <div class="icons">
+                    <img id="icon-lamp" class="thumb dim" src="images/Lamp@2x.png" alt="lamp" >
+                    <img id="icon-fire" class="thumb dim" src="images/Fire@2x.png" alt="fire" >
+                </div>
+            </div>
+        </div>
+
+        <!-- סימולציה על השולחן -->
+        <div class="simulation">
+            <div>
+                <div class="title-line">הדייט של: <span id="liveName"></span></div>
+
+                <img id="table" src="images/Table@2x.png" alt="picnic">
+
+                <!-- סוג תאורה  -->
+                <img id="onTable-fire" src="images/Fire@2x.png" alt="fire"  >
+                <img id="onTable-lamp" src="images/Lamp@2x.png" alt="lamp" >
+
+                <!-- אוכל  -->
+                <img id="onTable-cheese" src="images/CheeseAndBread@2x.png" alt="braedAndCheese"  >
+                <img id="onTable-strawberry" src="images/Strawberry@2x.png" alt="fruits"  >
+                <img id="onTable-cake" src="images/Cake@2x.png" alt="cake" >
+
+                <!-- שתייה  -->
+                <img id="onTable-water" src="images/Water@2x.png" alt="water" >
+                <img id="onTable-wine"  src="images/Wine@2x.png"  alt="wine" >
+                <img id="onTable-juice" src="images/Juice@2x.png" alt="juice"  >
+            </div>
+        </div>
+        
+        <!-- טופס השאלות -->
+        <div class="form">
+            <form id="picnicForm">
+                <input type="hidden" id="dateForm" name="formSent" value="dcohit1@gmail.com">
+
+                <!-- שם הלקוח -->
+                <div id="names" class="question">
+                    <div class="guiding">
+                        <label for="fullName"><span class="must"> * </span>ספרו לנו איך קוראים לכם ולדייט שלכם: </label></div>
+                    <div class="answer">
+                        <input id="fullName" type="text" placeholder="לדוגמה: נעה ודניאל" >
+                    </div>
+                    <div id="names-error" class="error-feedback"></div>
+                </div>
+
+
+                <!-- שאלה על שתייה -->
+                <div id="drinks" class="question">
+                    <fieldset >
+                        <legend><span class="must"> * </span>מה תרצו לשתות? </legend>
+                        <label class="check"><input type="checkbox"> מים</label>
+                        <label class="check"><input type="checkbox"> יין</label>
+                        <label class="check"><input type="checkbox"> מיץ תפוזים</label>
+                    </fieldset>
+                    <div id="drinks-error" class="error-feedback"></div>
+                </div>
+
+
+                <!-- שאלה על האוכל -->
+                <div id="food" class="question">
+                    <fieldset>
+                        <legend><span class="must"> * </span>איזה אוכל תרצו? </legend>
+                        <label class="check"><input type="checkbox"> פלטת לחמים וגבינות</label>
+                        <label class="check"><input type="checkbox"> סלסלת פירות העונה</label>
+                        <label class="check"><input type="checkbox"> עוגה טעימה</label>
+                    </fieldset>
+                    <div id="food-error" class="error-feedback"></div>
+                </div>
+
+
+                <!-- שאלה על תאורה -->
+                <div id="light" class="question">
+                    <fieldset>
+                        <legend><span class="must"> * </span>איזה תאורה תעדיפו? </legend>
+                        <label class="check"><input type="radio" name="light"> עששית רומנטית</label>
+                        <label class="check"><input type="radio" name="light"> מדורה מחממת</label>
+                    </fieldset>
+                    <div id="light-error" class="error-feedback"></div>
+                </div>
+
+
+                <!-- כתובת הלקוח -->
+                <div id="adressQuestion" class="question">
+                    <div class="guiding">
+                        <label for="adress"><span class="must"> * </span>לאן לשלוח לכם את המשלוח?</label></div>
+                    <div class="answer">
+                        <input id="adress" type="text" >
+                    </div>
+                    <div id="adress-error" class="error-feedback"></div>
+                </div>
+
+
+                <!-- בקשות מיוחדת -->
+                <div id="moreRecquest" class="question">
+                    <div class="guiding">
+                        <label for="notes">בקשות מיוחדות נוספות?</label>
+                    </div>
+                    <div class="answer">
+                        <textarea id="notes" rows="6"></textarea>
+                    </div>
+                </div>
+
+
+                <!--כפתור שלח הזמנה -->
+                <div >
+                    <input id="submitBtn" type="submit" value="שלח הזמנה">
+                </div>
+                <div id="feedback"></div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- חלון סיכום -->
+    <div id="modal" class="modal" aria-hidden="true">
+        <div id="summary" class="box" role="dialog" aria-modal="true" aria-labelledby="summaryTitle">
+            <h3 id="summaryTitle">סיכום ההזמנה</h3>
+            <p><span class="summary-label">שם הלקוח:</span> <span id="userName"></span></p>
+            <p><span class="summary-label">סוג השתייה:</span> <span id="drinkType"></span></p>
+            <p><span class="summary-label">סוג האוכל:</span> <span id="foodType"></span></p>
+            <p><span class="summary-label">סוג התאורה:</span> <span id="lightType"></span></p>
+            <p><span class="summary-label">כתובת משלוח:</span> <span id="destination"></span></p>
+            <p><span class="summary-label">בקשות מיוחדות נוספות:</span> <span id="moreInfo"></span></p>
+
+            <div class="modal-actions">
+                <input type="button" id="closePopUp" value="סגור">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
